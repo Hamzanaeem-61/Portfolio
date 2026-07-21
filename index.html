@@ -3,8 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Hamza Naeem Janjua — Electrical Engineer</title>
-<meta name="description" content="Hamza Naeem Janjua — Electrical Engineering undergraduate. Embedded systems, PCB design, digital logic.">
+<meta name="theme-color" content="#0d1a20">
+<title>Hamza Naeem Janjua | Electrical Engineer</title>
+<meta name="description" content="Hamza Naeem Janjua — Electrical Engineering undergraduate specializing in embedded systems, PCB design, and digital logic.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
@@ -55,6 +56,8 @@
   .mono{font-family:'IBM Plex Mono',monospace;}
   .display{font-family:'Space Grotesk',sans-serif;}
   a{color:inherit;}
+  ::selection{background:var(--copper); color:var(--bg);}
+  :focus-visible{outline:2px solid var(--trace-bright); outline-offset:4px;}
   h1,h2,h3{margin:0; font-family:'Space Grotesk',sans-serif;}
   p{margin:0;}
   section{position:relative; z-index:1;}
@@ -79,7 +82,7 @@
     text-decoration:none;
   }
   .brand .dot{width:6px; height:6px; border-radius:50%; background:var(--trace-bright); box-shadow:0 0 6px var(--trace-bright);}
-  nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
+  .nav-inner nav ul{list-style:none; display:flex; gap:28px; margin:0; padding:0;}
   nav a{
     font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:0.06em;
     text-decoration:none; color:var(--text-dim); text-transform:uppercase;
@@ -100,6 +103,7 @@
   .nav-cta:hover{background:var(--copper-bright);}
   .menu-btn{display:none; background:none; border:1px solid var(--line); color:var(--copper); width:38px; height:38px; border-radius:var(--radius); cursor:pointer;}
   .menu-btn span{display:block; width:16px; height:1px; background:var(--copper); margin:4px auto;}
+  #mobileNav ul{list-style:none; display:flex; margin:0; padding:0;}
 
   /* ---------- Signature trace rail ---------- */
   .rail{
@@ -111,6 +115,11 @@
 
   /* ---------- Hero ---------- */
   .hero{padding:120px 0 96px; position:relative; overflow:hidden;}
+  .hero::after{
+    content:""; position:absolute; width:340px; height:340px; right:-130px; top:45px;
+    border:1px solid var(--line); border-radius:50%; box-shadow:0 0 0 34px rgba(201,161,90,.035), 0 0 0 68px rgba(201,161,90,.02);
+    pointer-events:none;
+  }
   .hero-inner{max-width:var(--maxw); margin:0 auto; padding:0 28px; position:relative;}
   .eyebrow{
     font-family:'IBM Plex Mono',monospace; font-size:12.5px; letter-spacing:0.14em;
@@ -185,6 +194,8 @@
 
   /* ---------- BOM / Skills table ---------- */
   .bom{width:100%; border-collapse:collapse; margin-top:8px;}
+  .table-wrap{overflow-x:auto; border:1px solid var(--line); border-radius:var(--radius); background:var(--bg-panel);}
+  .table-wrap .bom{margin:0; min-width:640px;}
   .bom caption{
     text-align:left; font-family:'IBM Plex Mono',monospace; font-size:11.5px;
     color:var(--text-dimmer); letter-spacing:0.08em; text-transform:uppercase; padding-bottom:10px;
@@ -252,7 +263,7 @@
   footer p{font-family:'IBM Plex Mono',monospace; font-size:11.5px; color:var(--text-dimmer); letter-spacing:0.04em;}
 
   @media (max-width:900px){
-    nav ul{display:none;}
+    .nav-inner nav ul{display:none;}
     .menu-btn{display:block;}
     .proj-grid{grid-template-columns:1fr;}
     .contact-grid{grid-template-columns:1fr; gap:32px;}
@@ -260,11 +271,19 @@
     .stat{border-right:none; border-bottom:1px solid var(--line);}
     .stat:last-child{border-bottom:none;}
     .contact-panel{padding:36px 24px;}
+    .hero::after{width:220px; height:220px; right:-120px; top:40px;}
   }
   @media (max-width:600px){
+    .wrap, .hero-inner{padding-left:20px; padding-right:20px;}
+    .nav-inner{padding-left:20px; padding-right:20px;}
     .chip{padding:26px 22px;}
     .edu-card{grid-template-columns:1fr;}
     .edu-meta{text-align:left;}
+    .hero{padding:84px 0 64px;}
+    .section{padding:64px 0;}
+    .section-head{margin-bottom:30px;}
+    .brand{font-size:11px;}
+    .nav-cta{display:none;}
   }
 </style>
 </head>
@@ -289,7 +308,7 @@
       </ul>
     </nav>
     <a class="nav-cta" href="mailto:hamza06naeem06@gmail.com">Hire Me</a>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu" aria-expanded="false">
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle navigation menu" aria-controls="mobileNav" aria-expanded="false">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -320,7 +339,7 @@
         real problems.
       </p>
       <div class="hero-actions">
-        <a class="btn btn-primary" href="Hamza_Naeem_Janjua_Resume.docx" download>↓ Download Résumé</a>
+        <a class="btn btn-primary" href="Hamza_Naeem_Janjua_Resume.pdf" download aria-label="Download Hamza Naeem Janjua's résumé as a PDF">Download résumé <span aria-hidden="true">↓</span></a>
         <a class="btn btn-ghost" href="mailto:hamza06naeem06@gmail.com">Email Me</a>
         <a class="btn btn-ghost" href="https://linkedin.com/in/hamza-naeem-a62a7b369" target="_blank" rel="noopener">LinkedIn ↗</a>
       </div>
@@ -388,6 +407,7 @@
           <h2 class="section-title">Bill of materials</h2>
         </div>
       </div>
+      <div class="table-wrap" role="region" aria-label="Skills table" tabindex="0">
       <table class="bom">
         <caption>Skills laid out as a component list — reference, part, and value</caption>
         <thead>
@@ -416,6 +436,7 @@
           </tr>
         </tbody>
       </table>
+      </div>
     </div>
   </section>
 
@@ -524,7 +545,7 @@
             </p>
             <div class="hero-actions" style="margin-top:28px;">
               <a class="btn btn-primary" href="mailto:hamza06naeem06@gmail.com">Email Me</a>
-              <a class="btn btn-ghost" href="Hamza_Naeem_Janjua_Resume.docx" download>Download Résumé</a>
+              <a class="btn btn-ghost" href="Hamza_Naeem_Janjua_Resume.pdf" download>Download résumé <span aria-hidden="true">↓</span></a>
             </div>
           </div>
           <ul class="contact-list">
@@ -555,7 +576,15 @@
   });
   mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
     mobileNav.style.display = 'none';
+    menuBtn.setAttribute('aria-expanded', 'false');
   }));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && mobileNav.style.display === 'block') {
+      mobileNav.style.display = 'none';
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.focus();
+    }
+  });
 
   // Scrollspy for nav active state
   const sections = document.querySelectorAll('main section[id]');
